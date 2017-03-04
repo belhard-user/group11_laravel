@@ -1,0 +1,15 @@
+p{
+    border: 1px solid black;
+    padding: 1em;
+    width: 200px;
+}
+p a{
+    text-decoration: none;
+}
+h2{
+    color: red;
+}
+.container{
+    width: 800px;
+    margin: 0 auto;
+}

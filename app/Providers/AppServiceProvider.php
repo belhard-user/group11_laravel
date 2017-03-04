@@ -13,7 +13,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Blade::directive('showTime', function ($val) {
+            return "<?php echo date('d-m-Y H:i:s', $val) ?>";
+        });
+        
+        view()->share('template', $this->getTemplate());
+    }
+    
+    protected function getTemplate()
+    {
+        if (rand(0, 1)) {
+            return 'main';
+        }
+        
+        return 'main2';
     }
 
     /**
