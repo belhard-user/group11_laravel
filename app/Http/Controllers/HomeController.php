@@ -13,6 +13,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $names = [
+            'Neo',
+            'Morpheus',
+            'Tank',
+            'Trinity',
+            'Dozer',
+            'Smith'
+        ];
+
+        \Debugbar::info($names);
         return view('home');
     }
 }
