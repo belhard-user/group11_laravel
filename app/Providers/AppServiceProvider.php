@@ -18,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
         });
         
         view()->share('template', $this->getTemplate());
+
+        \Schema::defaultStringLength(191);
     }
     
     protected function getTemplate()
