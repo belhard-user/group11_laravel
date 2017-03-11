@@ -25,4 +25,44 @@ class DBController extends Controller
 
         return view('db.insert');
     }
+
+    public function delete()
+    {
+        $r = DB::table('test')
+            ->whereBetween('age', [23, 34])
+            ->delete();
+
+        Debugbar::info($r);
+        return view('db.insert');
+    }
+
+    public function update()
+    {
+        $r = DB::table('test')
+            ->where('id', 1)
+            ->decrement('age', 50, ['name' => 'rename again']);
+            // ->update(['age' => 0, 'name' => 'rename']);
+
+        Debugbar::info($r);
+        return view('db.insert');
+    }
+
+    public function select(Request $request)
+    {
+        $tests = DB::table('test');
+
+        if($request->has('age')){
+            $tests = $tests->where('age', '>', $request->get('age'));
+        }
+
+        $avg = round($tests->avg('age'));
+        $tests = $tests
+            ->join('articles', 'test.id', '=', 'articles.id')
+            ->select('articles.*', 'articles.id as aid', 'test.*', 'test.id as tid');
+        $tests = $tests->orderBy('age')->get();
+
+        Debugbar::info($tests);
+
+        return view('db.select', compact('tests', 'avg'));
+    }
 }
