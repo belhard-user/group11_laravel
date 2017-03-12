@@ -25,7 +25,7 @@
     <div id="app">
         @include('part.nav')
 
-        @yield('content')
+        <div class="container">@yield('content')</div>
     </div>
 
     <!-- Scripts -->
