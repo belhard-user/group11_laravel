@@ -59,4 +59,19 @@ class DBController extends Controller
 
         return view('db.select', compact('tests', 'avg'));
     }
+
+    public function create()
+    {
+        $test = Test::firstOrNew([
+            'name' => 'Neo3',
+            'email' => 'neo@gmail.com',
+        ]);
+
+        Debugbar::info($test);
+
+        $test->save();
+//        Test::find(1)->update(['age' => 23]);
+
+        return view('db.insert');
+    }
 }
