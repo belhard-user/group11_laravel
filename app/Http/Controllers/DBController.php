@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Test;
 use DB;
 use Debugbar;
 use Illuminate\Http\Request;
@@ -49,19 +50,12 @@ class DBController extends Controller
 
     public function select(Request $request)
     {
-        $tests = DB::table('test');
 
-        if($request->has('age')){
-            $tests = $tests->where('age', '>', $request->get('age'));
-        }
-
+        $tests = Test::peopleH('a');
+        
         $avg = round($tests->avg('age'));
-        $tests = $tests
-            ->join('articles', 'test.id', '=', 'articles.id')
-            ->select('articles.*', 'articles.id as aid', 'test.*', 'test.id as tid');
-        $tests = $tests->orderBy('age')->get();
 
-        Debugbar::info($tests);
+        $tests = $tests->get();
 
         return view('db.select', compact('tests', 'avg'));
     }
