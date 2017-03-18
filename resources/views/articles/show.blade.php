@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary" href="{{ route('article.edit', ['slug' => $article->slug]) }}">Клац</a>
+        </div>
+    </div>
     <h1>
         {{ $article->title }}
         <hr>

@@ -25,6 +25,7 @@ class InitBlogTables extends Migration
     public function down()
     {
         Schema::dropIfExists('articles');
+        Schema::dropIfExists('tags');
     }
 
     private function createTagsTable()

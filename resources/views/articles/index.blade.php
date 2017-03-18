@@ -1,14 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-    @foreach($articles as $article)
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary" href="{{ route('article.create') }}">добавить новость</a>
+        </div>
+    </div>
+
+    @forelse($articles as $article)
         <article>
             <h2>
                 {{ $article->title }}
                 <small>{{ $article->date  }}</small>
             </h2>
             <p>{{ $article->short_description }}</p>
-            <a href="{{ route('article.show', ['slug' => $article->slug]) }}">глянуть</a>
+            <a href="{{ route('article.show', ['id' => $article->slug]) }}">глянуть</a>
         </article>
-    @endforeach
+    @empty
+        <h4>Нету новостей</h4>
+    @endforelse
+
+    {{ $articles->render() }}
 @endsection
