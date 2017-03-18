@@ -16,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
     {
         setlocale(LC_TIME, 'russian');
         \Carbon\Carbon::setLocale('ru');
+
+        \Schema::defaultStringLength(191);
     }
 
     /**

@@ -9,15 +9,37 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::paginate();
+        $articles = Article::latest('updated_at')->paginate();
         
         return view('articles.index', compact('articles'));
     }
 
-    public function view($article)
+    public function view(Article $article)
     {
-        $article = Article::whereSlug($article)->first();
-        
         return view('articles.show', compact('article'));
+    }
+
+    public function create()
+    {
+        return view('articles.create');
+    }
+
+    public function store(Request $request)
+    {
+        Article::create($request->all());
+
+        return redirect()->route('article.index');
+    }
+
+    public function edit(Article $article)
+    {
+        return view('articles.edit', compact('article'));
+    }
+
+    public function update(Request $request, Article $article)
+    {
+        $article->update($request->all());
+
+        return redirect()->route('article.show', ['slug' => $article->slug]);
     }
 }

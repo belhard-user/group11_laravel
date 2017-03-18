@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    protected $fillable = ['title', 'short_description', 'description'];
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = str_slug($value);
+    }
+
     public function getDateAttribute()
     {
         $month = iconv('windows-1251', 'utf-8', $this->updated_at->formatLocalized('%B'));
