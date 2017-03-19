@@ -74,4 +74,19 @@ class DBController extends Controller
 
         return view('db.insert');
     }
+
+    public function relation()
+    {
+        $tank = Test::find(3);
+
+        /*$test = Test::create([
+            'name' => 'Tank',
+            'age' => 23,
+            'email' => 'a@a.com'
+        ]);*/
+        
+        $tank->people()->create(['name' => 'ураа м...']);
+
+        return view('db.insert');
+    }
 }

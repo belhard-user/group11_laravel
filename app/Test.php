@@ -24,4 +24,9 @@ class Test extends Model
     {
         return $this->avg('age');
     }
+
+    public function people()
+    {
+        return $this->hasMany(\App\People::class);
+    }
 }
