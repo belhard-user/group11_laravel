@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -24,7 +24,7 @@ class ArticleController extends Controller
         return view('articles.create');
     }
 
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         Article::create($request->all());
 
@@ -36,7 +36,7 @@ class ArticleController extends Controller
         return view('articles.edit', compact('article'));
     }
 
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
         $article->update($request->all());
 
