@@ -9,7 +9,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::latest('updated_at')->paginate();
+        $articles = Article::with('user')->latest('updated_at')->paginate();
         
         return view('articles.index', compact('articles'));
     }
@@ -26,7 +26,7 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        Article::create($request->all());
+        auth()->user()->article()->create($request->all());
 
         return redirect()->route('article.index');
     }

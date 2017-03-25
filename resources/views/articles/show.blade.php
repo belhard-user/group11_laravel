@@ -13,4 +13,5 @@
     </h1>
 
     <p>{{ $article->description }}</p>
+    <p class="pull-right">{{ $article->user->email }}</p>
 @endsection

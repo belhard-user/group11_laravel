@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
@@ -51,5 +52,10 @@ class Article extends Model
         ];
 
         return array_get($mon, $month, $month);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -13,7 +13,7 @@
                 {{ $article->title }}
                 <small>{{ $article->date  }}</small>
             </h2>
-            <p>{{ $article->short_description }}</p>
+            <p>{{ $article->short_description }} ... Author: {{ ucfirst($article->user->name) }}</p>
             <a href="{{ route('article.show', ['id' => $article->slug]) }}">глянуть</a>
         </article>
     @empty
