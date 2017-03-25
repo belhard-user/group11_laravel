@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\People;
 use App\Test;
 use DB;
 use Debugbar;
@@ -88,5 +89,14 @@ class DBController extends Controller
         $tank->people()->create(['name' => 'ураа м...']);
 
         return view('db.insert');
+    }
+
+    public function manyToMany()
+    {
+        $role = \App\Role::first();
+
+        // $role->people()->attach([1, 2, 3], ['additional' => 'asdasdas']);
+
+        dd($role->people);
     }
 }

@@ -8,10 +8,12 @@ class People extends Model
 {
     protected $fillable = ['name'];
 
+    public $table = 'peoples';
+
     public $timestamps = false;
 
-    public function test()
+    public function role()
     {
-        return $this->belongsTo(\App\Test::class); // foo_id
+        return $this->belongsToMany(\App\Role::class)->withTimestamps();
     }
 }

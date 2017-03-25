@@ -13,5 +13,6 @@ Route::group(['prefix' => 'db'], function($route){
     $route->get('select', 'DBController@select');
     $route->get('create', 'DBController@create');
     $route->get('relation', 'DBController@relation');
+    $route->get('many', 'DBController@manyToMany');
 });
 
