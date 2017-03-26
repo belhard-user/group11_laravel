@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class DBController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('my-admin');
+    }
+
     public function insert()
     {
         $db = DB::table('test');
