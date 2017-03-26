@@ -18,9 +18,11 @@ class TagsSeeder extends Seeder
             ['title' => 'Призидент', 'slug' => str_slug('Призидент')],
             ['title' => 'Финансы', 'slug' => str_slug('Финансы')],
         ];
-        
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         $tagsTable = DB::table('tags');
+
         $tagsTable->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
         $tagsTable->insert($tagList);
     }
 }

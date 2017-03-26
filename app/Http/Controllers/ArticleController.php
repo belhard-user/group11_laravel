@@ -26,8 +26,10 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        auth()->user()->article()->create($request->all());
+        $article = auth()->user()->article()->create($request->all());
 
+        $article->tags()->attach($request->get('tag_list'));
+        
         return redirect()->route('article.index');
     }
 
@@ -39,6 +41,9 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, Article $article)
     {
         $article->update($request->all());
+        if($request->has('tag_list')) {
+            $article->tags()->sync($request->get('tag_list'));
+        }
 
         return redirect()->route('article.show', ['slug' => $article->slug]);
     }

@@ -27,10 +27,12 @@ class ArticleRequest extends FormRequest
      */
     public function rules()
     {
+        $tags = \App\Tag::pluck('id');
         $rules = [
             'title' => 'required|min:5|max:200|unique:articles',
             'short_description' => 'required',
             'description' => 'required',
+            'tag_list' => 'in:' . $tags->implode(',')
         ];
 
         $routeAlias = array_get($this->route()->action, 'as');
