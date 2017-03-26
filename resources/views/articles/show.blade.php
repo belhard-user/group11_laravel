@@ -14,4 +14,14 @@
 
     <p>{{ $article->description }}</p>
     <p class="pull-right">{{ $article->user->email }}</p>
+
+    <div class="row">
+        <div class="col-md-12">
+            @unless($article->tags->isEmpty())
+                @foreach($article->tags as $tag)
+                    <a href="{{ route('bytagname', ['tag' => $tag->slug]) }}" class="label label-info">{{ $tag->title }}</a>
+                @endforeach
+            @endunless
+        </div>
+    </div>
 @endsection

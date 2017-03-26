@@ -26,6 +26,10 @@ class RouteServiceProvider extends ServiceProvider
         \Route::bind('article', function($slug){
             return \App\Article::whereSlug($slug)->firstOrFail();
         });
+        
+        \Route::bind('tag', function($tag){
+            return \App\Tag::whereSlug($tag)->firstOrFail();
+        });
         parent::boot();
     }
 

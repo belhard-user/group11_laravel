@@ -32,7 +32,7 @@ class ArticleRequest extends FormRequest
             'title' => 'required|min:5|max:200|unique:articles',
             'short_description' => 'required',
             'description' => 'required',
-            'tag_list' => 'in:' . $tags->implode(',')
+            'tag_list.*' => 'in:' . $tags->implode(',')
         ];
 
         $routeAlias = array_get($this->route()->action, 'as');

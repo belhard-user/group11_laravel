@@ -24,5 +24,17 @@ class TagsSeeder extends Seeder
         $tagsTable->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
         $tagsTable->insert($tagList);
+
+        if(\App\Article::first()){
+            $articles = \App\Article::all();
+            $tagList = \App\Tag::pluck('id')->toArray();
+
+            foreach($articles as $article){
+                $randIds = array_rand($tagList, rand(2, 4));
+                $intersect = array_intersect($randIds, $tagList);
+
+                $article->tags()->attach($intersect);
+            }
+        }
     }
 }
