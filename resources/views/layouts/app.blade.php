@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
     @yield('css')
 
     <!-- Scripts -->
@@ -24,12 +25,14 @@
 <body>
     <div id="app">
         @include('part.nav')
+        @include('part.flash')
 
         <div class="container">@yield('content')</div>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     @yield('js')
 </body>
 </html>
